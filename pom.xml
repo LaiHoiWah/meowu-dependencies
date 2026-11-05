@@ -29,6 +29,8 @@
         <gson.version>2.11.0</gson.version>
         <!-- logback -->
         <logback-encoder.version>7.4</logback-encoder.version>
+        <!-- lombok -->
+        <lombok.version>1.18.38</lombok.version>
         <!-- maven plugin -->
         <maven-install-plugin.version>3.5.1</maven-install-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
@@ -115,6 +117,13 @@
                 <version>${logback-encoder.version}</version>
             </dependency>
 
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
             <!-- meowu -->
         </dependencies>
     </dependencyManagement>
@@ -139,6 +148,10 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
                 </plugin>
 
                 <plugin>
@@ -151,6 +164,10 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <useDefaultDelimiters>true</useDefaultDelimiters>
+                        <propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
+                    </configuration>
                 </plugin>
 
                 <plugin>
